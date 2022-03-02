@@ -10,6 +10,14 @@ pipeline {
    
     stages {
         
+        stage('Echoing Output') {
+            steps {
+                script{ 
+                sh "echo $AWS_ACCOUNT_ID | echo $AWS_DEFAULT_REGION | echo $IMAGE_REPO_NAME | echo $IMAGE_TAG | echo $REPOSITORY_URI"
+                }
+            }
+        }
+        
          stage('Logging into AWS ECR') {
             steps {
                 script {
