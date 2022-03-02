@@ -29,7 +29,7 @@ pipeline {
                   }
               }
         }
-        stage('Push the Docker Image to the ECR') {
+        stage('Deploy in the ECS') {
               steps {
                   script {
                   sh "aws ecs update-service --cluster sundar-ecs-cluster --service nodeapp-svc  --force-new-deployment --region ${AWS_DEFAULT_REGION}"
