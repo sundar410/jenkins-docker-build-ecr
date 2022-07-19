@@ -3,14 +3,14 @@ def awsCredentials = [[$class: 'AmazonWebServicesCredentialsBinding', credential
 pipeline {
     agent any
     parameters {
-        string(name: 'kpi-image-tag', defaultValue: 'Mr Jenkins', description: 'Please mention image tag version')
+        string(name: 'kpiimagetag', defaultValue: 'Mr Jenkins', description: 'Please mention image tag version')
     }
    
     stages {
         
         stage('Parameters') {
             steps {
-                echo "Hello ${params.kpi-image-tag}"
+                echo "Hello ${params.kpiimagetag}"
                  
             }
         }
