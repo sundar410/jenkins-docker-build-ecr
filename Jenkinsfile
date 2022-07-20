@@ -3,7 +3,7 @@ def awsCredentials = [[$class: 'AmazonWebServicesCredentialsBinding', credential
 pipeline {
     agent any
     parameters {
-        choice(choices: 'kpi\nlogging', name: 'servicename', description: 'Please mention the service name Below')
+        choice(choices: 'kpi\nlogging\nresource\nspecimen\nmetric', name: 'servicename', description: 'Please mention the service name Below')
         string(name: 'versionid', defaultValue: '1.0.0', description: 'Please mention the version id value Below')
         
     }
