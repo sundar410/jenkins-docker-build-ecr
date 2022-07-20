@@ -12,7 +12,7 @@ pipeline {
         
         stage('Parameters') {
             steps {
-                echo "Hello ${params.servicename}-${params.versionid}"
+                echo "Hello ${params.versionid}"
            
                  
             }
