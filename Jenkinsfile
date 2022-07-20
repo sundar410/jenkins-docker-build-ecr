@@ -25,30 +25,30 @@ pipeline {
             }
         }
         
-        stage('Push the Docker Image to the ECR') {
+        stage('Pull the Docker images') {
               steps {
                   script {
                       withCredentials(awsCredentials){
-                          sh "docker build -t ${IMAGE_REPO_NAME}:${params.kpiimagetag} ."
-                          sh "docker tag ${IMAGE_REPO_NAME}:${params.kpiimagetag} ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${params.kpiimagetag}"
-                          sh "docker tag ${IMAGE_REPO_NAME}:${params.kpiimagetag} ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:kpi"
-                          sh "docker push ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${params.kpiimagetag}"
-                          sh "docker push ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:kpi"
+                   
+                          sh "docker pull ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${params.kpiimagetag}"
+                      
                       }
                     }
                   }  
                }
          
         
-//         stage('Logging into AWS ECR') {
-//             steps {
-//                 script {
-//                  withCredentials(awsCredentials){
-//                         sh "docker pull ${IMAGE_REPO_NAME}:${IMAGE_TAG}"
-//                  }
-//                 }   
-//             }
-//         }
+        stage('Rollbacking to the previous version') {
+            steps {
+                script {
+                 withCredentials(awsCredentials){
+                        sh "docker tag  ${REPOSITORY_URI}/${IMAGE_REPO_NAME} ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:kpi"
+                        sh "docker push ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:kpi"
+                        
+                 }
+                }   
+            }
+        }
         
        
         
