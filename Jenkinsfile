@@ -42,7 +42,7 @@ pipeline {
             steps {
                 script {
                  withCredentials(awsCredentials){
-                        sh "docker tag  ${REPOSITORY_URI}/${IMAGE_REPO_NAME} ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:kpi"
+                        sh "docker tag  ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${params.kpiimagetag} ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:kpi"
                         sh "docker push ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:kpi"
                         
                  }
