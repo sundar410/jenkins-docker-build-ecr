@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                    if ("${params.versionid}" == ""){ 
-                     echo "Hello ${params.versionid}"
+                     echo "Hello ${params.versionid} Empty value"
                }
                   else { 
                      echo "Hello ${params.versionid} !!!!!!!!"
