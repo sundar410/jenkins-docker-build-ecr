@@ -30,8 +30,8 @@ pipeline {
                   script {
                       withCredentials(awsCredentials){
                           sh "docker build -t ${IMAGE_REPO_NAME}:${params.kpiimagetag} ."
-                          sh "docker tag ${IMAGE_REPO_NAME}:${params.kpiimagetag} ${REPOSITORY_URI}:${params.kpiimagetag}"
-                          sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${params.kpiimagetag}"
+                          sh "docker tag ${IMAGE_REPO_NAME}:${params.kpiimagetag} ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${params.kpiimagetag}"
+                          sh "docker push ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${params.kpiimagetag}"
                       }
                     }
                   }  
