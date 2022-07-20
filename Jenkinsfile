@@ -31,9 +31,9 @@ pipeline {
                       withCredentials(awsCredentials){
                           sh "docker build -t ${IMAGE_REPO_NAME}:${params.kpiimagetag} ."
                           sh "docker tag ${IMAGE_REPO_NAME}:${params.kpiimagetag} ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${params.kpiimagetag}"
-                          sh "docker tag ${IMAGE_REPO_NAME}:${params.kpiimagetag} ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:latest"
+                          sh "docker tag ${IMAGE_REPO_NAME}:${params.kpiimagetag} ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:kpi"
                           sh "docker push ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${params.kpiimagetag}"
-                          sh "docker push ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:latest"
+                          sh "docker push ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:kpi"
                       }
                     }
                   }  
