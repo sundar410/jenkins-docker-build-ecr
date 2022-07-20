@@ -12,12 +12,15 @@ pipeline {
         
         stage('Parameters') {
             steps {
-               if ("${params.versionid}" = ""){ 
-                echo "Hello ${params.versionid}"
+                script {
+                   if "${params.versionid}" = ""){ 
+                     echo "Hello ${params.versionid}"
                }
-               else { 
-                echo "Hello ${params.versionid} !!!!!!!!"
-               } 
+                  else { 
+                     echo "Hello ${params.versionid} !!!!!!!!"
+                 }  
+                }
+              
                  
             }
         }
