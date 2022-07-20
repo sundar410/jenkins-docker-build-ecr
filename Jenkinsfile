@@ -38,15 +38,15 @@ pipeline {
                }
          
         
-        stage('Logging into AWS ECR') {
-            steps {
-                script {
-                 withCredentials(awsCredentials){
-                        sh "docker pull ${IMAGE_REPO_NAME}:${IMAGE_TAG}"
-                 }
-                }   
-            }
-        }
+//         stage('Logging into AWS ECR') {
+//             steps {
+//                 script {
+//                  withCredentials(awsCredentials){
+//                         sh "docker pull ${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+//                  }
+//                 }   
+//             }
+//         }
         
        
         
