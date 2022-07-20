@@ -3,14 +3,17 @@ def awsCredentials = [[$class: 'AmazonWebServicesCredentialsBinding', credential
 pipeline {
     agent any
     parameters {
-        string(name: 'kpiimagetag', defaultValue: 'Mr Jenkins', description: 'Please mention image tag version')
+        string(name: 'servicename', defaultValue: 'kpi', description: 'Please mention the service name Below')
+        string(name: 'versionid', defaultValue: '1.0.0', description: 'Please mention the version id value Below')
+        
     }
    
     stages {
         
         stage('Parameters') {
             steps {
-                echo "Hello ${params.kpiimagetag}"
+                echo "Hello ${params.servicename}-${params.versionid}"
+           
                  
             }
         }
@@ -30,7 +33,7 @@ pipeline {
                   script {
                       withCredentials(awsCredentials){
                    
-                          sh "docker pull ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${params.kpiimagetag}"
+                          sh "docker pull ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${params.servicename}-${params.versionid}"
                       
                       }
                     }
@@ -42,8 +45,8 @@ pipeline {
             steps {
                 script {
                  withCredentials(awsCredentials){
-                        sh "docker tag  ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${params.kpiimagetag} ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:kpi"
-                        sh "docker push ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:kpi"
+                        sh "docker tag  ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${params.servicename}-${params.versionid} ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${params.servicename}"
+                        sh "docker push ${REPOSITORY_URI}/${IMAGE_REPO_NAME}:${params.servicename}"
                         
                  }
                 }   
