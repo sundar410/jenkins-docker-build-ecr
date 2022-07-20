@@ -13,7 +13,7 @@ pipeline {
         stage('Parameters') {
             steps {
                 script {
-                   if "${params.versionid}" = ""){ 
+                   if ("${params.versionid}" = ""){ 
                      echo "Hello ${params.versionid}"
                }
                   else { 
